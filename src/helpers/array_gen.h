@@ -6,6 +6,6 @@
 
 
     unsigned long int* generate_array(int n, int starting_val);
-    unsigned long int* shuffle_array(unsigned long int* array);
+    void shuffle(unsigned long int *arr, int n);                    // modify the array (shuffles it)
 
 #endif
