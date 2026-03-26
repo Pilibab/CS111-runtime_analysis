@@ -7,8 +7,8 @@
 #include <assert.h>
 #include "../helpers/array_gen.h"
 
-    bool validate_sort(unsigned long int* arr, int n, unsigned long int x) ;
-    void run_array_gen_tests(unsigned long int* my_arr,unsigned int N, unsigned long int X);
-    bool validate_shuffle(unsigned long int* arr, int n, unsigned long int start_v);
-    void run_array_shuffle_test(unsigned long int* my_arr,unsigned int N, unsigned long int X);
+    bool validate_sort(ArrPtr arr, int n, ArrElement x) ;
+    void run_array_gen_tests(ArrPtr my_arr,unsigned int N, ArrElement X);
+    bool validate_shuffle(ArrPtr arr, int n, ArrElement start_v);
+    void run_array_shuffle_test(ArrPtr my_arr,unsigned int N, ArrElement X);
 #endif 

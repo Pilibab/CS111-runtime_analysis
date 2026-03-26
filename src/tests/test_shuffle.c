@@ -1,9 +1,9 @@
 #include "validation.h"
 
 // this can also be used to say do {shuffling} while(!bool validate_shuffle) 
-bool validate_shuffle(unsigned long int* arr, int n, unsigned long int start_v) {
+bool validate_shuffle(ArrPtr arr, int n, ArrElement start_v) {
     // num of elements that are still in their original position 
-    unsigned long int elementInPlace = 0; 
+    ArrElement elementInPlace = 0; 
 
     for (int i = 0; i < n; i++) {
         // If the value is exactly what it would be in a sorted array

@@ -1,4 +1,5 @@
 #include <stdio.h>
+#include "./helpers/array_gen.h"
 
 
 int main() {
@@ -10,7 +11,7 @@ int main() {
     printf("Enter the length of the array: ");
     scanf(" %d", &starting_val);
 
-    unsigned long int* arr = generate_array(N, starting_val);
+    ArrPtr arr = generate_array(N, starting_val);
 
     printf("\narray: ");
     for (int i = 0; i < N / 5; i++) {

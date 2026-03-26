@@ -1,7 +1,7 @@
 #include "validation.h"
 
 
-void run_array_gen_tests(unsigned long int* my_arr,unsigned int N, unsigned long int X) {
+void run_array_gen_tests(ArrPtr my_arr,unsigned int N, ArrElement X) {
     // Run the validation
     if (validate_sort(my_arr, N, X)) {
         printf("PASS: Sequence is correct, starts at %lu, and has %d elements.\n", X, N);
@@ -11,7 +11,7 @@ void run_array_gen_tests(unsigned long int* my_arr,unsigned int N, unsigned long
 
 }
 
-void run_array_shuffle_test(unsigned long int* my_arr,unsigned int N, unsigned long int X){
+void run_array_shuffle_test(ArrPtr my_arr,unsigned int N, ArrElement X){
     // Run the validation
     if (validate_shuffle(my_arr, N, X)) {
         printf("PASS: Sequence is shuffled correctly, starts at %lu, and has %d elements.\n", X, N);
@@ -27,12 +27,12 @@ void run_array_shuffle_test(unsigned long int* my_arr,unsigned int N, unsigned l
 // ./test_logic
 int main() {
     int N = 1000;
-    unsigned long int X = 50;
+    ArrElement X = 50;
 
     printf("--- Running Array Generation Tests ---\n");
 
     
-    unsigned long int* my_arr = generate_array(N, X); 
+    ArrPtr my_arr = generate_array(N, X); 
     run_array_gen_tests(my_arr, N, X);
 
     printf("--- Running Array Shuffle Tests ---\n");
