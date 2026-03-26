@@ -17,7 +17,7 @@ void run_array_gen_tests() {
 
     printf("--- Running Array Generation Tests ---\n");
 
-    // 1. Generate the array using your helper
+    
     unsigned long int* my_arr = generate_array(N, X); 
 
     // 2. Run the validation
@@ -39,13 +39,13 @@ void run_array_gen_tests() {
 bool validate_increasing_sequence(unsigned long int* arr, int n, unsigned long int x) {
     if (arr == NULL || n <= 0) return false;
 
-    // Rule 1: Starts at X
+    // Starts at X
     if (arr[0] != x) {
         printf("Test Failed: Expected start %lu, got %lu\n", x, arr[0]);
         return false;
     }
 
-    // Rule 2: Continuity (prev - next == -1)
+    // Continuity (prev - next == -1)
     for (int i = 1; i < n; i++) {
         // Checking if (previous - current) is -1
         // Note: Using long casting to avoid unsigned underflow wrap-around during the check
@@ -60,4 +60,25 @@ bool validate_increasing_sequence(unsigned long int* arr, int n, unsigned long i
 
 int main() {
     run_array_gen_tests();
+}
+
+// this can also be used to say do {shuffling} while(!bool validate_shuffle) 
+bool validate_shuffle(unsigned long int* arr, int n, unsigned long int start_v) {
+    // num of elements that are still in their original position 
+    unsigned int elementInPlace; 
+
+    for (int i = 0; i < n; i++) {
+        // If the value is exactly what it would be in a sorted array
+        if (arr[i] == (start_v + i)) {
+            elementInPlace++;
+        }
+    }
+
+    // If more than 10% of the elements stayed exactly where they were, 
+    // something is likely wrong with the random seed or the loop logic.
+    if (elementInPlace > (n * 0.1)) { 
+        return false; 
+    }
+
+    return true;
 }
