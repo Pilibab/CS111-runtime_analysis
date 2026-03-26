@@ -2,6 +2,7 @@
 #define ARRAY_GEN_H
 
 #include <stdlib.h>
+#include <stdio.h>
 
 
     unsigned long int* generate_array(int n, int starting_val);
