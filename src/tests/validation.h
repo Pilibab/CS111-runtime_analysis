@@ -6,6 +6,8 @@
 #include <stdbool.h>
 #include <assert.h>
 #include "../helpers/array_gen.h"
+#include "../main.h"
+
 
     bool validate_sort(ArrPtr arr, int n, ArrElement x) ;
     void run_array_gen_tests(ArrPtr my_arr,unsigned int N, ArrElement X);
