@@ -31,9 +31,7 @@ void shuffle(ArrPtr arr, int n) {
             int j = rand() % (i + 1);
             
             // Swap arr[i] with the element at random index j
-            ArrElement temp = arr[j];
-            arr[j] = arr[i];
-            arr[i] = temp;
+            swap(&arr[i], &arr[j]);
         }
     }
 }
