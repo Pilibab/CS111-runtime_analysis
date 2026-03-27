@@ -1,5 +1,4 @@
-#include <stdio.h>
-#include "./helpers/array_gen.h"
+#include "main.h"
 
 
 int main() {
