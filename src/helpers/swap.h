@@ -1,5 +1,5 @@
-#ifndef ARRAY_GEN_H
-#define ARRAY_GEN_H
+#ifndef SWAP_H
+#define SWAP_H
 
 #include <stdlib.h>
 #include <stdio.h>
