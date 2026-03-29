@@ -6,7 +6,7 @@
  *      n:              length of the array
  *      starting_val:   start filling up the array from this val
  */
-ArrPtr generate_array(int n, int starting_val) {
+ArrPtr generate_sequencial_array(int n, int starting_val) {
     // Allocate memory for N ArrElementegers
     ArrPtr arr = malloc(n * sizeof(ArrElement));
     

@@ -6,7 +6,7 @@
 #include "../main.h"
 #include "swap.h"
 
-    ArrPtr generate_array(int n, int starting_val);
+    ArrPtr generate_sequencial_array(int n, int starting_val);
     void shuffle(ArrPtr arr, int n);                    // modify the array (shuffles it)
 
 #endif

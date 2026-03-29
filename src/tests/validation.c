@@ -32,7 +32,7 @@ int main() {
     printf("--- Running Array Generation Tests ---\n");
 
     
-    ArrPtr my_arr = generate_array(N, X); 
+    ArrPtr my_arr = generate_sequencial_array(N, X); 
     run_array_gen_tests(my_arr, N, X);
 
     printf("--- Running Array Shuffle Tests ---\n");
