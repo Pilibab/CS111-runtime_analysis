@@ -1,6 +1,6 @@
 #include "algorithm.h"
 
-void selectionSort(int arr[], int n) {
+void selectionSort(ArrPtr arr, unsigned int n) {
     for (int i = 0; i < n - 1; i++) {
         // Assume the current position holds
         // the minimum element

@@ -6,7 +6,7 @@
  *      n:              length of the array
  *      starting_val:   start filling up the array from this val
  */
-ArrPtr generate_sequencial_array(int n, int starting_val) {
+ArrPtr generate_sequencial_array(int n, ArrElement starting_val) {
     // Allocate memory for N ArrElementegers
     ArrPtr arr = malloc(n * sizeof(ArrElement));
     
@@ -24,6 +24,19 @@ ArrPtr generate_sequencial_array(int n, int starting_val) {
     return arr;
 }
 
+ArrPtr generate_random_array(int N) {
+    ArrPtr arr = malloc(sizeof(unsigned long) * N);
+
+    srand(time(NULL));  // seed once
+
+    for (int i = 0; i < N; i++) {
+        arr[i] = rand() % (MAX_RANGE + 1);
+    }
+
+    return arr;
+}
+
+// arrptr is already a pointer
 void shuffle(ArrPtr arr, int n) {
     if (n > 1) {
         for (int i = n - 1; i > 0; i--) {

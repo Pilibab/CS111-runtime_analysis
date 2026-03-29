@@ -1,7 +1,7 @@
 #include "validation.h"
 
 // this can also be used to say do {shuffling} while(!bool validate_shuffle) 
-bool validate_shuffle(ArrPtr arr, int n, ArrElement start_v) {
+bool validate_shuffle(ArrPtr arr, ArrElement n, ArrElement start_v) {
     // num of elements that are still in their original position 
     ArrElement elementInPlace = 0; 
 

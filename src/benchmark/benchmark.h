@@ -3,12 +3,10 @@
 
 #include <time.h>
 #include <stdbool.h>
+#include <string.h>
+#include "../type.h"
 #include "../helpers/array_gen.h"
 #include "../tests/validation.h"
-
-    // a "decorator" for timing a sorting algoritm 
-    // to use this we do timer(sorting_wrapper())      -> this returns the time of execution 
-    int benchmark_algorithm(void (*func_ptr)());
 
     struct BenchMark {
         clock_t runtime;
@@ -16,5 +14,13 @@
         // ArrPtr sortedArr;
     };
 
+    // a "decorator" for timing a sorting algoritm 
+    // to use this we do timer(sorting_wrapper())      -> this returns the time of execution 
+    struct BenchMark benchmark_algorithm( 
+        void (*sort)(int arrLen, ArrPtr array), 
+        ArrElement startvalue,
+        int arrLen, 
+        ArrPtr originalArray
+    );
 
 #endif
