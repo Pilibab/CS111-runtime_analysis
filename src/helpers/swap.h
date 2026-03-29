@@ -3,7 +3,8 @@
 
 #include <stdlib.h>
 #include <stdio.h>
-#include "../main.h"
+#include "../type.h"
+
 
     void swap(ArrElement *a, ArrElement *b);                    // modify the array (shuffles it)
 

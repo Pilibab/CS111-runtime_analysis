@@ -1,9 +1,9 @@
 #include "algorithm.h"
 
-void insertionSort(ArrPtr* arr, unsigned int n)
+void insertionSort(ArrPtr arr, unsigned int n)
 {
     for (int i = 1; i < n; ++i) {
-        int key = arr[i];
+        ArrElement key = arr[i];
         int j = i - 1;
 
         while (j >= 0 && arr[j] > key) {

@@ -9,7 +9,7 @@ struct BenchMark benchmark_algorithm(
 ) 
 {
     bool isSorted = false;
-    clock_t runtime = NULL;
+    clock_t runtime = 0;
 
     // allocate space based on number of elements * size of each element
     ArrPtr workingCopy = malloc(arrLen * sizeof(ArrElement));
@@ -21,7 +21,7 @@ struct BenchMark benchmark_algorithm(
 
 
     // perform benchmark
-    clock_t start = clock;
+    clock_t start = clock();
     (*sort)(arrLen, workingCopy);
     clock_t end = clock();
     
@@ -38,3 +38,6 @@ struct BenchMark benchmark_algorithm(
     
     return (struct BenchMark){runtime, isSorted};
 }
+
+
+// struct BenchMark handle_benchmark(){} 

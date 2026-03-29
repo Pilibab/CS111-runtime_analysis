@@ -6,7 +6,7 @@
  * 1. arr[0] must be X
  * 2. Every element must be exactly 1 greater than the previous.
  */
-bool validate_sort(ArrPtr arr, int n, ArrElement x) {
+bool validate_sort(ArrPtr arr, ArrElement n, ArrElement x) {
     if (arr == NULL || n <= 0) return false;
 
     // Starts at X

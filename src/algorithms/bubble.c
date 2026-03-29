@@ -1,5 +1,5 @@
 #include "algorithm.h"
-void bubbleSort(ArrPtr* arr, unsigned int n)
+void bubbleSort(ArrPtr arr, unsigned int n)
 {
     for (int i = 0; i < n - 1; i++)
     {
