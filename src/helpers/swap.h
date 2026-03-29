@@ -5,6 +5,6 @@
 #include <stdio.h>
 #include "../main.h"
 
-    void swap(ArrElement *arr, ArrElement *n);                    // modify the array (shuffles it)
+    void swap(ArrElement *a, ArrElement *b);                    // modify the array (shuffles it)
 
 #endif
