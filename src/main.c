@@ -29,14 +29,8 @@ int main(int argc, char *argv[]) {
 
         arr = generate_sequencial_array(N, starting_val);
 
-    } else {
-        printf("Invalid choice. Exiting.\n");
-        return 1;
-    }
-
-
-    printf("\n sample array: ");
-    for (int i = 0; i < 10; i++) {
+    printf("\narray: ");
+    for (int i = 0; i < N / 5; i++) {
         printf(" %lu", arr[i]);
     }
 
