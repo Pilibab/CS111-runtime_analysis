@@ -8,11 +8,12 @@
 #include "../helpers/array_gen.h"
 #include "../type.h"
 
-
-
-
-    bool validate_sort(ArrPtr arr, ArrElement n, ArrElement x) ;
+    bool validate_sort(ArrPtr arr, ArrElement n) ;
     void run_array_gen_tests(ArrPtr my_arr,ArrElement N, ArrElement X);
     bool validate_shuffle(ArrPtr arr, ArrElement n, ArrElement start_v);
     void run_array_shuffle_test(ArrPtr my_arr, ArrElement N, ArrElement X);
+    int set_direction(
+        ArrElement a,   // arr[i-1]
+        ArrElement b    // arr[i]
+    );
 #endif 
