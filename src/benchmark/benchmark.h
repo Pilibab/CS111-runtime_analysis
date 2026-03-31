@@ -1,5 +1,5 @@
-#ifndef BENCHMARK_ALGORITHM_H
-#define BENCHMARK_ALGORITHM_H
+#ifndef BENCHMARK_H
+#define BENCHMARK_H
 
 #include <time.h>
 #include <stdbool.h>

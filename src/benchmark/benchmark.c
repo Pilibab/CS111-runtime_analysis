@@ -30,7 +30,7 @@ struct BenchMark benchmark_algorithm(
 
     // note that this test would fail if say [1,3,4,5] 
     // since the test expect an arrangement of incrementation by 1
-    if (validate_sort(workingCopy, arrLen, startvalue)) {
+    if (validate_sort(workingCopy, arrLen)) {
         isSorted = true;
     }
 
