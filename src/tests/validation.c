@@ -3,7 +3,7 @@
 
 void run_array_gen_tests(ArrPtr my_arr,unsigned int N, ArrElement X) {
     // Run the validation
-    if (validate_sort(my_arr, N, X)) {
+    if (validate_sort(my_arr, N)) {
         printf("PASS: Sequence is correct, starts at %lu, and has %d elements.\n", X, N);
     } else {
         printf("FAIL: Sequence logic is broken.\n");

@@ -2,28 +2,30 @@
 
 
 struct BenchMark benchmark_algorithm( 
-    void (*sort)(int arrLen, ArrPtr array), 
-    ArrElement startvalue,
-    int arrLen, 
+    SortFunc func, 
+    unsigned int arrLen, 
     ArrPtr originalArray
 ) 
 {
     bool isSorted = false;
-    clock_t runtime = 0;
+    double runtime = 0;
 
     // allocate space based on number of elements * size of each element
     ArrPtr workingCopy = malloc(arrLen * sizeof(ArrElement));
 
-    if (workingCopy == NULL) return (struct BenchMark){0, false}; 
+    if (workingCopy == NULL) {
+        printf("allocation failed");
+        return (struct BenchMark){0, false};
+    }
 
     // Copy the data over, this allow us to perform chain benchmarking for each algorithm  
     memcpy(workingCopy, originalArray, arrLen * sizeof(ArrElement));
 
-
     // perform benchmark
-    clock_t start = clock();
-    (*sort)(arrLen, workingCopy);
-    clock_t end = clock();
+    double start = clock();
+    // ArrElement, ArrPtr
+    func(workingCopy, arrLen);
+    double end = clock();
     
     // get total run time 
     runtime = (double)(end - start) / CLOCKS_PER_SEC;

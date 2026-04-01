@@ -9,7 +9,7 @@
 #include "../tests/validation.h"
 
     struct BenchMark {
-        clock_t runtime;
+        double runtime;
         bool is_sorted;
         // ArrPtr sortedArr;
     };
@@ -17,9 +17,9 @@
     // a "decorator" for timing a sorting algoritm 
     // to use this we do timer(sorting_wrapper())      -> this returns the time of execution 
     struct BenchMark benchmark_algorithm( 
-        void (*sort)(int arrLen, ArrPtr array), 
-        ArrElement startvalue,
-        int arrLen, 
+        // void (*sort)(int arrLen, ArrPtr array), 
+        SortFunc func, 
+        unsigned int arrLen, 
         ArrPtr originalArray
     );
 
