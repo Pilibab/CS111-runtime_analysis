@@ -8,6 +8,9 @@ Algorithm my_algs[] = {
     {"Selection Sort", selectionSort},
     {"Bubble Sort",    bubbleSort},
     {"Insertion Sort", insertionSort},
+    {"Merge Sort", handle_mergeSort},
+    {"Quick Sort", handle_quickSort},
+    {"Heap Sort", heapSort},
     // Add the others here...
 };
 unsigned int sizes[] = {10, 100, 1000, 10000, 100000};
@@ -16,7 +19,7 @@ int num_sizes = 5;
 
 int main(int argc, char *argv[]) {
 
-    int num_algs = 3; // Update this as you add more
+    int num_algs = 6; // Update this as you add more
 
     int N, choice_action, choice_generation; 
     int starting_val;
