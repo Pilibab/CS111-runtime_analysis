@@ -10,4 +10,15 @@
     void bubbleSort(ArrPtr arr, unsigned int n);
     void insertionSort(ArrPtr arr, unsigned int n);
     void selectionSort(ArrPtr arr, unsigned int n);
+
+    void heapify(ArrPtr arr, unsigned int n, unsigned int i);
+    void heapSort(ArrPtr arr, unsigned int n);
+
+    void merge(ArrPtr arr, unsigned int left, unsigned int mid, unsigned int right);
+    void mergeSortRecursive(ArrPtr arr, unsigned int left, unsigned int right);
+    void handle_mergeSort(ArrPtr arr, unsigned int size); 
+
+    void handle_quickSort(ArrPtr arr, unsigned int size);
+    void quickSortRecursive(ArrPtr arr, unsigned int low, unsigned int high);
+    unsigned int partition(ArrPtr arr, unsigned int low, unsigned int high) ;
 #endif
