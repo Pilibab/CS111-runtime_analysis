@@ -10,8 +10,8 @@ Algorithm my_algs[] = {
     {"Insertion Sort", insertionSort},
     // Add the others here...
 };
-unsigned int sizes[] = {10, 100, 1000, 10000, 100000, 1000000};
-int num_sizes = 6;
+unsigned int sizes[] = {10, 100, 1000, 10000, 100000};
+int num_sizes = 5;
 
 
 int main(int argc, char *argv[]) {
