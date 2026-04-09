@@ -18,7 +18,12 @@
     void mergeSortRecursive(ArrPtr arr, unsigned int left, unsigned int right);
     void handle_mergeSort(ArrPtr arr, unsigned int size); 
 
-    void handle_quickSort(ArrPtr arr, unsigned int size);
+    // void handle_quickSort(ArrPtr arr, unsigned int size);
+    // void quickSortRecursive(ArrPtr arr, unsigned int low, unsigned int high);
+    // unsigned int partition(ArrPtr arr, unsigned int low, unsigned int high) ;
+
+    ArrElement median_of_three(ArrPtr arr, unsigned int low, unsigned int high);
+    unsigned int partition(ArrPtr arr, unsigned int low, unsigned int high);
     void quickSortRecursive(ArrPtr arr, unsigned int low, unsigned int high);
-    unsigned int partition(ArrPtr arr, unsigned int low, unsigned int high) ;
+    void handle_quickSort(ArrPtr arr, unsigned int size) ;
 #endif
