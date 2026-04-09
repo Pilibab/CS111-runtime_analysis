@@ -4,41 +4,18 @@
 struct BenchMark benchmark_algorithm( 
     SortFunc func, 
     unsigned int arrLen, 
-    ArrPtr originalArray
+    ArrPtr workingArray
 ) 
 {
-    bool isSorted = false;
-    double runtime = 0;
-
-    // allocate space based on number of elements * size of each element
-    ArrPtr workingCopy = malloc(arrLen * sizeof(ArrElement));
-
-    if (workingCopy == NULL) {
-        printf("allocation failed");
-        return (struct BenchMark){0, false};
-    }
-
-    // Copy the data over, this allow us to perform chain benchmarking for each algorithm  
-    memcpy(workingCopy, originalArray, arrLen * sizeof(ArrElement));
-
-    // perform benchmark
     double start = clock();
-    // ArrElement, ArrPtr
-    func(workingCopy, arrLen);
+    func(workingArray, arrLen);
     double end = clock();
-    
-    // get total run time 
-    runtime = (double)(end - start) / CLOCKS_PER_SEC;
 
-    // note that this test would fail if say [1,3,4,5] 
-    // since the test expect an arrangement of incrementation by 1
-    if (validate_sort(workingCopy, arrLen)) {
-        isSorted = true;
-    }
+    double runtime = (double)(end - start) / CLOCKS_PER_SEC;
 
-    free(workingCopy);
-    
-    return (struct BenchMark){runtime, isSorted};
+    bool is_sorted = validate_sort(workingArray, arrLen);
+
+    return (struct BenchMark){runtime, is_sorted};
 }
 
 

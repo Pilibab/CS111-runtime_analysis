@@ -20,7 +20,7 @@
         // void (*sort)(int arrLen, ArrPtr array), 
         SortFunc func, 
         unsigned int arrLen, 
-        ArrPtr originalArray
+        ArrPtr workingArray
     );
 
 #endif

@@ -13,8 +13,8 @@ Algorithm my_algs[] = {
     {"Heap Sort", heapSort},
     // Add the others here...
 };
-unsigned int sizes[] = {10, 100, 1000, 10000, 100000};
-int num_sizes = 5;
+unsigned int sizes[] = {10, 100, 1000, 10000, 100000, 1000000};
+int num_sizes = 6;
 
 
 int main(int argc, char *argv[]) {
@@ -32,10 +32,30 @@ int main(int argc, char *argv[]) {
 
     if (choice_action == 1) 
     {
-        for (int n = 0 ; n < num_sizes; n++) {
-            arr = generate_random_array(sizes[n]);
-            report_n_runtime(num_algs, 5, sizes[n], arr,false);
-        }
+        int choice_arr_type = 1;
+        printf("Perform benchmark on type ____ array:\n");
+        printf("\t[1] sorted inputs\n");
+        printf("\t[2] random inputs\n");
+        scanf("%d", &choice_arr_type); // Added the missing scanf
+
+
+        if (choice_arr_type == 1) {
+            ArrElement starting_val = 0;
+
+            printf("Enter starting value (X): ");
+            scanf(" %ld", &starting_val);
+
+            for (int n = 0 ; n < num_sizes; n++) {
+                arr = generate_sequencial_array(sizes[n], starting_val);
+                report_n_runtime(num_algs, 5, sizes[n], arr, true);
+            }
+        } else if (choice_arr_type == 2) {
+            for (int n = 0 ; n < num_sizes; n++) {
+                arr = generate_random_array(sizes[n]);
+                report_n_runtime(num_algs, 5, sizes[n], arr,false);
+            }
+        } else return 0; 
+
     } else if (choice_action == 2) 
         {
 
@@ -60,7 +80,6 @@ int main(int argc, char *argv[]) {
             arr = generate_sequencial_array(N, starting_val);
         }
     }
-
     return 0;
 }
 
@@ -92,15 +111,37 @@ void report_n_runtime(
         double sum_time = 0;
 
         for (int run = 1; run <= total_run; run++) {
-            struct BenchMark test = benchmark_algorithm(my_algs[a].func, num_sizes, arr);
-            
-            // Assuming test.runtime is now a double (seconds)
+
+            // Allocate fresh copy
+            ArrPtr workingCopy = malloc(num_sizes * sizeof(ArrElement));
+            if (workingCopy == NULL) {
+                printf("allocation failed\n");
+                return;
+            }
+
+            // Copy original array
+            memcpy(workingCopy, arr, num_sizes * sizeof(ArrElement));
+
+            // Benchmark ONLY sorting
+            struct BenchMark test = benchmark_algorithm(
+                my_algs[a].func, 
+                num_sizes, 
+                workingCopy
+            );
+
             printf("  %.6fs", test.runtime);
             sum_time += test.runtime;
+
+            // Optional: safety check
+            if (!test.is_sorted) {
+                printf(" (ERROR)");
+            }
+
+            free(workingCopy);
         }
 
         double avg = sum_time / total_run;
-        printf(" |  \033[1;32m%.6fs\033[0m\n", avg); // \033[1;32m makes the average green in most terminals
+        printf(" |  %.6fs\n", avg); // \033[1;32m makes the average green in most terminals
     }
 };
 
