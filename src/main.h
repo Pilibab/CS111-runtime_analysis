@@ -17,8 +17,13 @@ void report_n_runtime(
     int total_run, 
     unsigned int num_sizes,
     ArrPtr arr, 
-    bool is_sorted
-); 
+    bool is_sorted,
+
+    // these file is strictly for writing data in a csv for easier visualization 
+    FILE *avg_fp,     // for averages CSV
+    FILE *runs_fp     // for detailed runs CSV
+);
+
 
 typedef struct {
     char *name;

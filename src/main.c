@@ -22,7 +22,6 @@ int main(int argc, char *argv[]) {
     int num_algs = 6; // Update this as you add more
 
     int N, choice_action, choice_generation; 
-    int starting_val;
     ArrPtr arr;
 
     printf("Select action:\n");
@@ -40,6 +39,19 @@ int main(int argc, char *argv[]) {
 
 
         if (choice_arr_type == 1) {
+
+            FILE *avg_fp = fopen("sorted/average_results.csv", "w");
+            FILE *runs_fp = fopen("sorted/detailed_runs.csv", "w");
+
+            if (!avg_fp || !runs_fp) {
+                printf("Error opening files\n");
+                return 1;
+            }
+
+            // CSV headers
+            fprintf(avg_fp, "N,Selection Sort,Bubble Sort,Insertion Sort,Merge Sort,Quick Sort,Heap Sort\n");
+            fprintf(runs_fp, "InputType,N,Algorithm,Run,Time\n");
+
             ArrElement starting_val = 0;
 
             printf("Enter starting value (X): ");
@@ -47,13 +59,49 @@ int main(int argc, char *argv[]) {
 
             for (int n = 0 ; n < num_sizes; n++) {
                 arr = generate_sequencial_array(sizes[n], starting_val);
-                report_n_runtime(num_algs, 5, sizes[n], arr, true);
+
+                report_n_runtime(
+                    num_algs, 
+                    5, 
+                    sizes[n], 
+                    arr, 
+                    true, 
+                    avg_fp, 
+                    runs_fp
+                );
             }
-        } else if (choice_arr_type == 2) {
+
+            fclose(avg_fp);
+            fclose(runs_fp);
+        }   else if (choice_arr_type == 2) {
+            FILE *avg_fp = fopen("random/average_results.csv", "w");
+            FILE *runs_fp = fopen("random/detailed_runs.csv", "w");
+
+            if (!avg_fp || !runs_fp) {
+                printf("Error opening files\n");
+                return 1;
+            }
+
+            // CSV headers
+            fprintf(avg_fp, "N,Selection Sort,Bubble Sort,Insertion Sort,Merge Sort,Quick Sort,Heap Sort\n");
+            fprintf(runs_fp, "InputType,N,Algorithm,Run,Time\n");
+
             for (int n = 0 ; n < num_sizes; n++) {
                 arr = generate_random_array(sizes[n]);
-                report_n_runtime(num_algs, 5, sizes[n], arr,false);
+
+                report_n_runtime(
+                    num_algs, 
+                    5, 
+                    sizes[n], 
+                    arr, 
+                    false, 
+                    avg_fp, 
+                    runs_fp
+                );
             }
+
+            fclose(avg_fp);
+            fclose(runs_fp);
         } else return 0; 
 
     } else if (choice_action == 2) 
@@ -74,8 +122,9 @@ int main(int argc, char *argv[]) {
             // report_n_runtime(num_algs, 5,10, false);
 
         } else if (choice_generation == 2) {
+            ArrElement starting_val;
             printf("Enter starting value (X): ");
-            scanf("%d", &starting_val);
+            scanf("% ld", &starting_val);
 
             arr = generate_sequencial_array(N, starting_val);
         }
@@ -90,7 +139,11 @@ void report_n_runtime(
     int total_run, 
     unsigned int num_sizes,
     ArrPtr arr, 
-    bool is_sorted
+    bool is_sorted,
+
+    // these file is strictly for writing data in a csv for easier visualization 
+    FILE *avg_fp,     // for averages CSV
+    FILE *runs_fp     // for detailed runs CSV
 ) {
     printf("\nResult of Experiment for %s Input, N=%d\n", is_sorted ? "Sorted" : "Random", num_sizes);
 
@@ -138,10 +191,26 @@ void report_n_runtime(
             }
 
             free(workingCopy);
+
+            // logs the time each run 
+            fprintf(runs_fp, "%s,%d,%s,%d,%.6f\n",
+                is_sorted ? "Sorted" : "Random",
+                num_sizes,
+                my_algs[a].name,
+                run,
+                test.runtime
+            );
         }
 
         double avg = sum_time / total_run;
-        printf(" |  %.6fs\n", avg); // \033[1;32m makes the average green in most terminals
+        printf(" |  %.6fs\n", avg);
+
+        // write log for avg
+        fprintf(avg_fp, "%.6f", avg);
+
+        if (a < num_algs - 1) {
+            fprintf(avg_fp, ",");
+        }
     }
 };
 
