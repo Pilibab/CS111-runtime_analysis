@@ -25,14 +25,16 @@ ArrPtr generate_sequencial_array(unsigned int n, ArrElement starting_val) {
 }
 
 ArrPtr generate_random_array(unsigned int N) {
-    ArrPtr arr = malloc(sizeof(unsigned long) * N);
+    ArrPtr arr = malloc(sizeof(ArrElement) * N);
 
-    srand(time(NULL));  // seed once
-
-    for (int i = 0; i < N; i++) {
-        arr[i] = rand() % (MAX_RANGE + 1);
+    if (arr == NULL) {
+        fprintf(stderr, "Fatal: Memory allocation failed for N=%u\n", N);
+        return NULL;
     }
-
+    
+    for (int i = 0; i < N; i++) {
+        arr[i] = (ArrElement)(rand() % (MAX_RANGE + 1));
+    }
     return arr;
 }
 

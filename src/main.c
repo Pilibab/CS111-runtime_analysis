@@ -15,6 +15,7 @@ int num_sizes = 6;
 
 int main(int argc, char *argv[]) {
 
+    srand(time(NULL));  // seed once
     int num_algs = 6; // !Update this as you add more
 
     int N, choice_action, choice_generation; 
@@ -145,7 +146,7 @@ void report_n_runtime(
         printf("Enter starting value (X): ");
         scanf("%ld", &starting_val);
 
-        master_arr = generate_sequencial_array(sizes[num_sizes], starting_val);
+        master_arr = generate_sequencial_array(num_sizes, starting_val);
     }
 
     fprintf(avg_fp, "%d,", num_sizes);
@@ -176,10 +177,11 @@ void report_n_runtime(
                 memcpy(workingCopy, master_arr, num_sizes * sizeof(ArrElement));
                 originalRef = master_arr; // Log from the template
             } else {
-                workingCopy = generate_random_array(num_sizes);
-                originalRef = workingCopy; // Log the freshly generated one BEFORE sorting
+                ArrPtr temp = generate_random_array(num_sizes);
+                workingCopy = malloc(num_sizes * sizeof(ArrElement));
+                memcpy(workingCopy, temp, num_sizes * sizeof(ArrElement));
+                originalRef = temp; // originalRef now points to a unique, unsorted block
             }
-
             // Benchmark ONLY sorting
             struct BenchMark test = benchmark_algorithm(
                 my_algs[a].func, 
@@ -193,9 +195,7 @@ void report_n_runtime(
             // Optional: safety check
             if (!test.is_sorted) {
                 printf(" (ERROR)");
-            }
-
-            
+            }      
             // print only if the array is 100 elem justification if it 
             // if it works for small sze array it will work for large array 
             if (num_sizes <= 10000 && a == num_algs - 1 && run == total_run) {
@@ -217,8 +217,11 @@ void report_n_runtime(
                 fprintf(sample_sorted, "\n========================================\n\n");
             }
 
-            free(originalRef);
             free(workingCopy);
+            // Free the temporary random array created in the 'else' block
+            if (!is_sorted) {
+                free(originalRef); 
+            }
 
             // logs the time each run 
             fprintf(runs_fp, "%s,%d,%s,%d,%.6f\n",
@@ -228,7 +231,6 @@ void report_n_runtime(
                 run,
                 test.runtime
             );
-
         }
 
         double avg = sum_time / total_run;
@@ -242,5 +244,8 @@ void report_n_runtime(
         }
     }
     fprintf(avg_fp, "\n");
+    if (is_sorted && master_arr != NULL) {
+        free(master_arr); // Free the template once at the very end
+    }
 };
 
