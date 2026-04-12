@@ -13,6 +13,7 @@ SRCS = 	src/main.c \
 SRCS_TEST = src/tests/test_shuffle.c \
 			src/tests/test_sorted.c \
 			src/helpers/array_gen.c \
+			src/helpers/swap.c \
 			src/tests/validation.c \
 
 # The "all" target - This is what runs when you just type 'make'
