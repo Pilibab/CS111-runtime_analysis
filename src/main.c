@@ -9,10 +9,11 @@ Algorithm my_algs[] = {
     {"Quick Sort", handle_quickSort},
     {"Heap Sort", heapSort},
 };
-unsigned int sizes[] = {10, 100, 1000, 10000, 100000, 1000000};
-int num_sizes = 6;
+// unsigned int sizes[] = {10, 100, 1000, 10000, 100000, 1000000};
+// int num_sizes = 6;
 
-
+unsigned int sizes[] = {1000000};
+int num_sizes = 1;
 int main(int argc, char *argv[]) {
 
     srand(time(NULL));  // seed once
