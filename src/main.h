@@ -16,12 +16,12 @@ void report_n_runtime(
     int num_algs, 
     int total_run, 
     unsigned int num_sizes,
-    ArrPtr arr, 
     bool is_sorted,
 
     // these file is strictly for writing data in a csv for easier visualization 
     FILE *avg_fp,     // for averages CSV
-    FILE *runs_fp     // for detailed runs CSV
+    FILE *runs_fp,     // for detailed runs CSV
+    FILE *sample_sorted     // for sample CSV
 );
 
 
