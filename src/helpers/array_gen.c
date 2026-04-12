@@ -6,7 +6,7 @@
  *      n:              length of the array
  *      starting_val:   start filling up the array from this val
  */
-ArrPtr generate_sequencial_array(int n, ArrElement starting_val) {
+ArrPtr generate_sequencial_array(unsigned int n, ArrElement starting_val) {
     // Allocate memory for N ArrElementegers
     ArrPtr arr = malloc(n * sizeof(ArrElement));
     
@@ -24,7 +24,7 @@ ArrPtr generate_sequencial_array(int n, ArrElement starting_val) {
     return arr;
 }
 
-ArrPtr generate_random_array(int N) {
+ArrPtr generate_random_array(unsigned int N) {
     ArrPtr arr = malloc(sizeof(unsigned long) * N);
 
     srand(time(NULL));  // seed once

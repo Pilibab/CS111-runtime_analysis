@@ -1,20 +1,20 @@
 #include "validation.h"
 
 
-void run_array_gen_tests(ArrPtr my_arr,unsigned int N, ArrElement X) {
+void run_array_gen_tests(ArrPtr my_arr, ArrElement N, ArrElement X) {
     // Run the validation
     if (validate_sort(my_arr, N)) {
-        printf("PASS: Sequence is correct, starts at %lu, and has %d elements.\n", X, N);
+        printf("PASS: Sequence is correct, starts at %lu, and has %lu elements.\n", X, N);
     } else {
         printf("FAIL: Sequence logic is broken.\n");
     }
 
 }
 
-void run_array_shuffle_test(ArrPtr my_arr,unsigned int N, ArrElement X){
+void run_array_shuffle_test(ArrPtr my_arr,ArrElement N, ArrElement X){
     // Run the validation
     if (validate_shuffle(my_arr, N, X)) {
-        printf("PASS: Sequence is shuffled correctly, starts at %lu, and has %d elements.\n", X, N);
+        printf("PASS: Sequence is shuffled correctly, starts at %lu, and has %lu elements.\n", X, N);
     } else {
         printf("FAIL: Sequence order is broken.\n");
     }
@@ -40,5 +40,10 @@ int main() {
     shuffle(my_arr, N);
     run_array_shuffle_test(my_arr, N, X);
     
+    ArrPtr arr = generate_random_array(100);
+    for (int i = 0; i < 100; i++)
+    {
+        printf("%lu ", arr[i]);
+    }
     free(my_arr); // Always free after testing!
 }
